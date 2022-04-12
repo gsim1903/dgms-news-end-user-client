@@ -1,10 +1,17 @@
 import React from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import { NavLink, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const NavBar = () => {
-  const { userAuthenticated } = useSelector((state) => state)
+  const dispatch = useDispatch()
+  const { userAuthenticated, userSubscribed } = useSelector((state) => state)
+
+  const handleSubscribe = () => {
+    dispatch({ type: 'SET_SUBSCRIBED', payload: true })
+    toast = "You've successfully subscribed"
+  }
 
   return (
     <Segment inverted>
@@ -27,14 +34,22 @@ const NavBar = () => {
           as={NavLink}
           to={{ pathname: '/business' }}
         />
-        {(!userAuthenticated && (
+        {!userAuthenticated ? (
           <Menu.Item
             data-cy="login-button"
             name="Login"
             as={NavLink}
             to={{ pathname: '/login' }}
           />
-        )) || (<Menu.Item data-cy="logged-button" name="Logged in" />)}
+        ) : (
+          <Menu.Item data-cy="logged-button" name="Logged in" />
+        )}
+        {(!userSubscribed || userAuthenticated ) && (
+        <Menu.Item
+          data-cy="subscribe-button"
+          name="Subscribe"
+          onclick={handleSubscribe}
+        />)}
       </Menu>
     </Segment>
   )

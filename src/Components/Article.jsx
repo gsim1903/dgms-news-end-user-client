@@ -3,9 +3,10 @@ import axios from "axios";
 import { Card, Container } from "semantic-ui-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Login from "./Login";
+import { toast } from "react-toastify";
 
-const Article = ({ toast }) => {
+
+const Article = () => {
   let navigate = useNavigate();
   let { id } = useParams();
   const dispatch = useDispatch();

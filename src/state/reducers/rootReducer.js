@@ -16,6 +16,13 @@ const rootReducer = (state, action) => {
         ...state,
         userAuthenticated: action.payload,
       }
+
+    case 'SET_SUBSCRIBED':
+      return {
+        ...state,
+        userSubscrubed: action.payload,
+      }
+
     default:
       return { ...state }
   }

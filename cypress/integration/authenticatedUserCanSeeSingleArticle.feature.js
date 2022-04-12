@@ -52,7 +52,7 @@ describe("Visitor  can ", () => {
       cy.visit("/");
 
       cy.get("[data-cy=head-lines]").first().click();
-    });
+    
 
     it("is expected to ask the user to sign in", () => {
       cy.get("[data-cy=flash-message]").should(
@@ -64,5 +64,6 @@ describe("Visitor  can ", () => {
     it("is expected to redirect user to login screen", () => {
       cy.url().should("contain", "http://localhost:3000/login");
     });
+  });
   });
 });

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import auth from "../modules/auth";
 import { Button, Container, Form, Input } from "semantic-ui-react";
+import { toast } from "react-toastify";
 
 
-const Login = ({ toast }) => {
+const Login = () => {
   const dispatch = useDispatch();
   const { activeArticle } = useSelector((state) => state);
   let navigate = useNavigate();
