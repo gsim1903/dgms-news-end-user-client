@@ -8,6 +8,8 @@ import Footer from './Components/Footer.jsx'
 import Login from './Components/Login.jsx'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PaymentForm from './Components/PaymentForm.jsx'
+
 
 const App = () => {
 
@@ -19,6 +21,7 @@ const App = () => {
         <Route path="/article/:id" element={<Article toast={toast} />} />
         <Route path="/:category" element={<ArticleGroup />} />
         <Route path="/login" element={<Login toast={toast}/>} />
+        <Route path="/payment" element={<PaymentForm/>} />
       </Routes>
       <div
         style={{
