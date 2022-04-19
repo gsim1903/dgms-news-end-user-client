@@ -23,7 +23,7 @@ describe('authenticates user can purchase a sub', () => {
         cy.url().should('contain', '/payment')
       // get the cc data-number, expiry date & cvc
       cy.get('div[data-cy=cc-number]').within(() => {
-        cy.get('iframe[name^="__privateStripeFrame"]').then(($iframe) => {
+        cy.get('iframe[name^=__privateStripeFrame]').then(($iframe) => {
           const $body = $iframe.contents().find('body')
           cy.wrap($body)
             .find('input[name=cardnumber]')
