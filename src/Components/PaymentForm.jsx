@@ -1,20 +1,83 @@
 import React from 'react'
-import { CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import {
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
 
 const PaymentForm = () => {
-    const stripe = useStripe()
-    const elements = useElements()
+  const stripe = useStripe()
+  const elements = useElements()
+  const dispatch = useDispatch()
+  const processPayment = async () => {
+    const ccElement = elements.getElement(CardNumberElement)
+    const stripeResponse = await stripe.createToken(ccElement)
+    const paymentStatus = await axios.post(
+      'http//localhost:3001/api/subsriptions',
+      { stripeToken: stripeResponse.token.id, amount: 20000 },
+    )
+
+    if (paymentStatus.data.paid) {
+      dispatch({ type: "SET_SUBSCRIBER_STATUS", payload: true });
+    }
+
+
+
+  
+  }
+
+  const options = {
+    style: {
+      base: {
+        fontSize: '20px',
+        '::placeholder': {
+          color: 'lightgrey',
+        },
+      },
+      invalid: {
+        backgroundColor: 'lightgrey',
+      },
+    },
+  }
+
+  const fieldOptions = {
+    padding: '10px',
+    margin: '10px 10px 10px',
+    border: '1px solid lightgrey',
+    borderRadius: '3px',
+    width: '50%',
+  }
+
+  const labelOptions = { margin: '10px 10px 10px', fontSize: '18px' }
   return (
     <>
-    <h1>Payment Form</h1>
-      <div data-cy="cardnumber">
-        <CardNumberElement />
+      <h1>PaymentForm</h1>
+      <label style={labelOptions}>Credit card number</label>
+      <div data-cy="cardnumber" style={fieldOptions}>
+        <CardNumberElement options={options} />
       </div>
-      <div data-cy="cc-expiry-date"></div>
-      <div data-cy="cc-cvc-number"></div>
-      </>
+      <label style={labelOptions}>Expiry date</label>
+      <div data-cy="exp-date" style={fieldOptions}>
+        <CardExpiryElement options={options} />
+      </div>
+      <label style={labelOptions}>CVC Number</label>
+      <div data-cy="cvc" style={fieldOptions}>
+        <CardCvcElement options={options} />
+      </div>
+
+      <button data-cy="submit-payment" onClick={processPayment}>
+        {' '}
+        Submit{' '}
+      </button>
+    </>
   )
 }
 
 export default PaymentForm
+
+//stripeResponse.token.id
