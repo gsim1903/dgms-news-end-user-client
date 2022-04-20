@@ -30,6 +30,8 @@ describe('authenticates user can purchase a sub', () => {
         })
       })
     })
-    it('is expected to get his status to subscriber', () => {})
+    it('is expected to the last four digits of the card number are 4242', () => {
+      cy.get("[data-cy=cardnumber]").should("contain",4242)
+    })
   })
 })

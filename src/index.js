@@ -12,6 +12,7 @@ import './index.css'
 const store = configureStore()
 const stripeProvider = loadStripe(process.env.REACT_APP_STRIPE_PK_KEY);
 
+
 window.store = store
 
 ReactDOM.render(
