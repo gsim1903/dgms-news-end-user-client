@@ -6,13 +6,14 @@ const PaymentForm = () => {
     const stripe = useStripe()
     const elements = useElements()
   return (
-    <div>PaymentForm
-        <div data-cy="cc-number" >
-            <CardNumberElement/>
-        </div>
-        <div data-cy="cc-date" ></div>
-        <div data-cy="cc-cvc" ></div>
-    </div>
+    <>
+    <h1>Payment Form</h1>
+      <div data-cy="cardnumber">
+        <CardNumberElement />
+      </div>
+      <div data-cy="cc-expiry-date"></div>
+      <div data-cy="cc-cvc-number"></div>
+      </>
   )
 }
 

@@ -10,9 +10,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import PaymentForm from './Components/PaymentForm.jsx'
 
-
 const App = () => {
-
   return (
     <>
       <NavBar />
@@ -20,8 +18,8 @@ const App = () => {
         <Route path="/" element={<Articles />} />
         <Route path="/article/:id" element={<Article toast={toast} />} />
         <Route path="/:category" element={<ArticleGroup />} />
-        <Route path="/login" element={<Login toast={toast}/>} />
-        <Route path="/payment" element={<PaymentForm/>} />
+        <Route path="/login" element={<Login toast={toast} />} />
+        <Route path="/payment" element={<PaymentForm />} />
       </Routes>
       <div
         style={{

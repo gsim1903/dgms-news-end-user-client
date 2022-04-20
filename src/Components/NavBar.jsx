@@ -43,8 +43,6 @@ const NavBar = () => {
               data-cy="subscription-button"
               name="Become a Subscriber"
               onClick={() => navigate('/payment')}
-              // as={Link}
-              // to={{ pathname: '/payments' }}
             />
           </>
         )}
