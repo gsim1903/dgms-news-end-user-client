@@ -3,11 +3,7 @@ describe('authenticates user can purchase a sub', () => {
     cy.intercept('GET', 'api/articles', {
       fixture: 'articles.json',
     }).as('getArticles')
-    cy.intercept('POST', 'https://r.stripe.com/0', { statusCode: 201 })
-    cy.intercept('POST', 'api/subscriptions', {
-      statusCode: 201,
-      body: { paid: true },
-    })
+   cy.intercept("POST", "https://r.stripe.com/0", { statusCode: 201 })
     cy.visit('/')
     cy.window().its('store').invoke('dispatch', {
       type: 'SET_USER_AUTHENTICATED',
@@ -19,13 +15,14 @@ describe('authenticates user can purchase a sub', () => {
     cy.get('@subscriptionButton').should('be.visible')
   })
 
+  
   describe('filling in form with valid cc-details', () => {
     beforeEach(() => {
       cy.get('@subscriptionButton').click()
       cy.url().should('contain', '/payment')
       
       cy.wait(1000)
-      cy.fillInPaymentFormField('card-number', '4242424242424242')
+      cy.fillInPaymentFormField('cardnumber', '4242424242424242')
       cy.fillInPaymentFormField('exp-date', '1122')
       cy.fillInPaymentFormField('cvc', '999')
       cy.get('[data-cy=submit-payment]').click()
@@ -37,8 +34,8 @@ describe('authenticates user can purchase a sub', () => {
       )
     })
     it('is expected to the last four digits of the card number are 4242', () => {
-      cy.get('[data-cy=cardnumber]').should('exist')
-    })
+       cy.get("[data-cy=cardnumber]").should("exist")
+     })
   })
 })
 

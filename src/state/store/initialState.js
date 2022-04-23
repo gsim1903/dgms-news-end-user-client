@@ -1,8 +1,8 @@
 const initialState = {
   articles: [],
   userAuthenticated: false,
-  subscriber: false
-};
+  subscriber: false,
 
+};
 
 export default initialState;

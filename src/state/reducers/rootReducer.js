@@ -11,22 +11,18 @@ const rootReducer = (state, action) => {
         activeArticle: action.payload,
       }
 
+    case 'SET_SUBSCRIBER_STATUS':
+      return {
+        ...state,
+        subscriber: action.payload,
+        
+      }
+
     case 'SET_USER_AUTHENTICATED':
       return {
         ...state,
         userAuthenticated: action.payload,
       }
-
-
-    case 'SET_SUBSCRIBER_STATUS':
-      return {
-        ...state,
-        subscriber: action.payload,
-      }
-
-
-
-
     default:
       return { ...state }
   }

@@ -56,9 +56,7 @@ Cypress.Commands.add(
 );
 
 
-
-
-  Cypress.Commands.add('fillInPaymentFormField',(element, value)=>{
+Cypress.Commands.add('fillInPaymentFormField',(element, value)=>{
     cy.get(`div[data-cy=${element}]`).within(() => {
         cy.get('iframe[name^="__privateStripeFrame"]').then((iframe) => {
           const body = iframe.contents().find('body')
