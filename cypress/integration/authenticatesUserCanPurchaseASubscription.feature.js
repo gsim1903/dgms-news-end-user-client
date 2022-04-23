@@ -23,21 +23,13 @@ describe('authenticates user can purchase a sub', () => {
     beforeEach(() => {
       cy.get('@subscriptionButton').click()
       cy.url().should('contain', '/payment')
-      cy.get('[data-cy=cc-number]').within(() => {
-        cy.get('iframe[name]^="___privateStripeFrame"').then(iframe => {
-          const body = iframe.contents().find('body')
-          cy.wrap(body)
-            .find('input[name=cardnumber]')
-            .type('4242424242424242', {delay: 1000})
-         })
-        })
-      })
-      // cy.wait(1000)
-      // cy.fillInPaymentFormField('cardnumber', '4242424242424242')
-      // cy.fillInPaymentFormField('exp-date', '1122')
-      // cy.fillInPaymentFormField('cvc', '999')
-      // cy.get('[data-cy=submit-payment]').click()
-    //})
+      
+      cy.wait(1000)
+      cy.fillInPaymentFormField('card-number', '4242424242424242')
+      cy.fillInPaymentFormField('exp-date', '1122')
+      cy.fillInPaymentFormField('cvc', '999')
+      cy.get('[data-cy=submit-payment]').click()
+    })
     it('is expected to display a success message', () => {
       cy.get('[data-cy=message]').should(
         'contain.text',
@@ -50,4 +42,4 @@ describe('authenticates user can purchase a sub', () => {
   })
 })
 
-//cy.getWithinIframe('[name="cardnumber"]').type('4242424242424242', { delay: 2 });
+

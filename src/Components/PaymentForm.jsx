@@ -58,7 +58,7 @@ const PaymentForm = () => {
     <>
       <h1>PaymentForm</h1>
       <label style={labelOptions}>Credit card number</label>
-      <div data-cy="cardnumber" style={fieldOptions}>
+      <div data-cy="card-number" style={fieldOptions}>
         <CardNumberElement options={options} />
       </div>
       <label style={labelOptions}>Expiry date</label>
