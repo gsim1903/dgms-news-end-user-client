@@ -1,14 +1,12 @@
-import React from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import Location from "./Location.jsx";
-
+import React from "react";
+import { Menu, Segment } from "semantic-ui-react";
+import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const { userAuthenticated } = useSelector((state) => state)
-  
-
+  const { userAuthenticated } = useSelector((state) => state);
+  const navigate = useNavigate();
   return (
     <Segment inverted>
       <Menu inverted secondary>
@@ -16,44 +14,40 @@ const NavBar = () => {
           data-cy="current-link"
           name="Current news"
           as={Link}
-          to={{ pathname: '/' }}
+          to={{ pathname: "/" }}
         />
         <Menu.Item
           data-cy="sports-link"
           name="Sports News"
           as={NavLink}
-          to={{ pathname: '/sports' }}
+          to={{ pathname: "/sports" }}
         />
         <Menu.Item
           data-cy="business-link"
           name="Business News"
           as={NavLink}
-          to={{ pathname: '/business' }}
+          to={{ pathname: "/business" }}
         />
         {(!userAuthenticated && (
           <Menu.Item
             data-cy="login-button"
             name="Login"
             as={NavLink}
-            to={{ pathname: '/login' }}
+            to={{ pathname: "/login" }}
           />
         )) || (
           <>
             <Menu.Item data-cy="logged-button" name="Logged in" />
             <Menu.Item
               data-cy="subscription-button"
-              name="Become a Subscriber"
-              onClick={() => navigate('/payment')}
+              name="Become a subscriber"
+              onClick={() => navigate("/payment")}
             />
           </>
         )}
       </Menu>
-      <Menu.Item 
-      />
-      <Location/>
     </Segment>
-    
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

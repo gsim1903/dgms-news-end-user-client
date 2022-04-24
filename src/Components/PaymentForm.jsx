@@ -19,7 +19,7 @@ const PaymentForm = () => {
     const stripeResponse = await stripe.createToken(ccElement);
     const paymentStatus = await axios.post(
       "http://localhost:3001/api/subscriptions",
-      { stripeToken: stripeResponse.token.id, amout: 20000 }
+      { stripeToken: stripeResponse.token.id, amount: 20000 }
     );
 
     if (paymentStatus.data.paid) {

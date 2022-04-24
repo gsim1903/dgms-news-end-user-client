@@ -1,6 +1,7 @@
 const initialState = {
   articles: [],
   userAuthenticated: false,
+  subscriber: false, 
   userCountry: '',
 }
 
