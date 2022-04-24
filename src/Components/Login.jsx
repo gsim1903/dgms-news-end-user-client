@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import auth from "../modules/auth";
 import { Button, Container, Form, Input } from "semantic-ui-react";
@@ -25,7 +25,7 @@ const Login = () => {
         payload: true,
       });
       toast("Login successful", toastSetting);
-      activeArticle ? navigate(`/article/${activeArticle.id}`): navigate("/");
+      activeArticle ? navigate(`/article/${activeArticle.id}`) : navigate("/");
     }
   };
 

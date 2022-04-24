@@ -1,30 +1,18 @@
 import React, { useEffect } from "react";
-//import axios from "axios";
 import { Grid, Container, Card, Item } from "semantic-ui-react";
-import {  useNavigate, useParams } from "react-router-dom";
-import { useSelector} from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ArticlesApi from "../modules/ArticlesApi";
 
-
-
 const Article = () => {
   let navigate = useNavigate();
-  const params = useParams()
-  //let { id } = useParams();
-  //const dispatch = useDispatch();
+  const params = useParams();
   const { activeArticle, userAuthenticated } = useSelector((state) => state);
   let article = activeArticle;
 
-  // const fetchArticle = async () => {
-  //   const response = await axios.get(`api/article/${id}`);
-  //   dispatch({ type: "SET_ACTIVE_ARTICLE", payload: response.data.article });
-  // };
-
   useEffect(() => {
-    //fetchArticle();
-    ArticlesApi.show(parseInt(params.id))
-
+    ArticlesApi.show(parseInt(params.id));
   }, []);
   useEffect(() => {
     if (!userAuthenticated) {
@@ -35,7 +23,8 @@ const Article = () => {
 
   return (
     <Container text>
-      <Card sx={{ width: '100%', maxWidth: 700 }}
+      <Card
+        sx={{ width: "100%", maxWidth: 700 }}
         header={article?.title}
         meta={`By: ${article?.author}`}
         image={article?.image}
@@ -49,9 +38,5 @@ const Article = () => {
     </Container>
   );
 };
-
-
-
-
 
 export default Article;

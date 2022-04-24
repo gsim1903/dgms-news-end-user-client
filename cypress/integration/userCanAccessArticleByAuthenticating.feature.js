@@ -14,7 +14,7 @@ describe("visitor can see an single article by authenticating right away", () =>
     cy.intercept("GET", "api/auth/validate_token**", {
       fixture: "authenticationSuccess.json",
     });
-    
+
     cy.visit("/", {
       onBeforeLoad(window) {
         const response = { error: { PERMISSION_DENIED: true } };
@@ -48,31 +48,29 @@ describe("visitor can see an single article by authenticating right away", () =>
     });
 
     it.only("is expected to redirect user to all articles", () => {
-      
       cy.get("[data-cy=articles-list]").children().should("have.length", 6);
-      
     });
     it("is expected to inform user that login was successful", () => {
       cy.get("[data-cy=flash-message]").should(
         "contain.text",
         "Login successful"
-        );
-      });
+      );
     });
-    describe("By clicking an article and then logging in", () => {
-      beforeEach(() => {
-        cy.get("[data-cy=head-lines]").first().click();
-      });
-  
-      it("is expected to redirect visitor to login screen", () => {
-        cy.url().should("eq", "http://localhost:3000/login");
-      });
-  
-      it("is expected user to access full article after logging in", () => {
-        cy.get("[data-cy=login-email]").type("user@email.com");
-        cy.get("[data-cy=login-password]").type("password");
-        cy.get("[data-cy=submit-button]").click();
-        cy.url().should("eq", "http://localhost:3000/article/1");
-      });
+  });
+  describe("By clicking an article and then logging in", () => {
+    beforeEach(() => {
+      cy.get("[data-cy=head-lines]").first().click();
     });
+
+    it("is expected to redirect visitor to login screen", () => {
+      cy.url().should("eq", "http://localhost:3000/login");
+    });
+
+    it("is expected user to access full article after logging in", () => {
+      cy.get("[data-cy=login-email]").type("user@email.com");
+      cy.get("[data-cy=login-password]").type("password");
+      cy.get("[data-cy=submit-button]").click();
+      cy.url().should("eq", "http://localhost:3000/article/1");
+    });
+  });
 });
