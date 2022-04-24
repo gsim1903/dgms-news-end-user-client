@@ -1,26 +1,30 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
 import { Grid, Container, Card, Item } from "semantic-ui-react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import {  useNavigate, useParams } from "react-router-dom";
+import { useSelector} from "react-redux";
 import { toast } from "react-toastify";
+import ArticlesApi from "../modules/ArticlesApi";
 
 
 
 const Article = () => {
   let navigate = useNavigate();
-  let { id } = useParams();
-  const dispatch = useDispatch();
+  const params = useParams()
+  //let { id } = useParams();
+  //const dispatch = useDispatch();
   const { activeArticle, userAuthenticated } = useSelector((state) => state);
   let article = activeArticle;
 
-  const fetchArticle = async () => {
-    const response = await axios.get(`api/article/${id}`);
-    dispatch({ type: "SET_ACTIVE_ARTICLE", payload: response.data.article });
-  };
+  // const fetchArticle = async () => {
+  //   const response = await axios.get(`api/article/${id}`);
+  //   dispatch({ type: "SET_ACTIVE_ARTICLE", payload: response.data.article });
+  // };
 
   useEffect(() => {
-    fetchArticle();
+    //fetchArticle();
+    ArticlesApi.show(parseInt(params.id))
+
   }, []);
   useEffect(() => {
     if (!userAuthenticated) {

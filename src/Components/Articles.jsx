@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
+//import axios from 'axios'
+import ArticlesApi from '../modules/ArticlesApi'
 import { Link } from 'react-router-dom'
 import { Container, Card, Image, Grid, Item } from 'semantic-ui-react'
 
 const Articles = () => {
-  const dispatch = useDispatch()
+  //const dispatch = useDispatch()
   const { articles } = useSelector((state) => state)
 
-  const fetchArticles = async () => {
-    const response = await axios.get('api/articles')
-    dispatch({ type: 'SET_ARTICLES', payload: response.data.articles })
-  }
+  // const fetchArticles = async () => {
+  //   const response = await axios.get('api/articles')
+  //   dispatch({ type: 'SET_ARTICLES', payload: response.data.articles })
+  // }
 
   const displayArticles = (articles) => {
     let articlesArray = []
@@ -22,7 +23,8 @@ const Articles = () => {
   }
 
   useEffect(() => {
-    fetchArticles()
+    ArticlesApi.index()
+    //fetchArticles()
   }, [])
 
   const articleList = displayArticles(articles).map((article) => {
