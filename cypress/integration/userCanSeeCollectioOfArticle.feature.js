@@ -31,7 +31,7 @@ describe('user can see a collection of articles', () => {
   })
 
   it('is expected to display a collection of 3 articles', () => {
-    cy.get('[data-cy=articles-list]').children().should('have.length', 6)
+    cy.get('[data-cy=articles-list]').children().should('have.length', 1)
   })
 
   it('is expected that the first title will be Sports and Business', () => {
