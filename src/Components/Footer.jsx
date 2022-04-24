@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+
 
 const Footer = () => {
   const { subscriber } = useSelector((state) => state);

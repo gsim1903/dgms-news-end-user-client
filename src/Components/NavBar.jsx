@@ -3,6 +3,8 @@ import { Menu, Segment } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Location from "./Location";
+
 
 const NavBar = () => {
   const { userAuthenticated } = useSelector((state) => state);
@@ -46,6 +48,7 @@ const NavBar = () => {
           </>
         )}
       </Menu>
+      <Location/>
     </Segment>
   );
 };
