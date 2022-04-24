@@ -10,7 +10,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import './index.css'
 
 const store = configureStore()
-const stripeProvider = loadStripe("pk_test_51IsORYEBWtL1DLKvi5Mf34FPtHM8Kucxy7dNDJotUW79cx9IhvERhxWCFExa1jmV8PYFi1YsYj4gCo2g72YdKCRN00hIkHfFeV");
+const stripeProvider = loadStripe(process.env.REACT_APP_STRIPE_PK_KEY);
 
 window.store = store
 
