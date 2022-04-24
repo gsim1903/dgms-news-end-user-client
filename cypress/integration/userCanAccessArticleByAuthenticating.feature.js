@@ -1,6 +1,6 @@
 describe("visitor can see an single article by authenticating right away", () => {
   beforeEach(() => {
-    cy.intercept("GET", "api/articles", {
+    cy.intercept("GET", "**/articles", {
       fixture: "articles.json",
     }).as("getArticles");
     cy.intercept("GET", "**/article/**", {

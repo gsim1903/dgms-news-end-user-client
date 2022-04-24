@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import ArticlesApi from "../modules/ArticlesApi";
+import ArticlesAPI from "../modules/ArticlesAPI";
 import { Link } from "react-router-dom";
 import { Container, Card, Image, Grid, Item } from "semantic-ui-react";
 
@@ -16,7 +16,7 @@ const Articles = () => {
   };
 
   useEffect(() => {
-    ArticlesApi.index();
+    ArticlesAPI.index();
   }, []);
 
   const articleList = displayArticles(articles).map((article) => {

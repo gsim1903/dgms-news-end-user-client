@@ -1,6 +1,6 @@
 describe('Visitor can view articles based on their location ', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'api/articles', {
+    cy.intercept('GET', '**/articles', {
       fixture: 'articles.json',
     }).as('getArticles')
 
@@ -60,7 +60,7 @@ describe('Visitor can view articles based on their location ', () => {
 
 describe('Visitor will view international articles when no location is found', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'api/articles', {
+    cy.intercept('GET', '**/articles', {
       fixture: 'articles.json',
     })
 

@@ -3,7 +3,7 @@ import { Grid, Container, Card, Item } from "semantic-ui-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import ArticlesApi from "../modules/ArticlesApi";
+import ArticlesAPI from "../modules/ArticlesAPI";
 
 const Article = () => {
   let navigate = useNavigate();
@@ -12,7 +12,7 @@ const Article = () => {
   let article = activeArticle;
 
   useEffect(() => {
-    ArticlesApi.show(parseInt(params.id));
+    ArticlesAPI.show(parseInt(params.id));
   }, []);
   useEffect(() => {
     if (!userAuthenticated) {

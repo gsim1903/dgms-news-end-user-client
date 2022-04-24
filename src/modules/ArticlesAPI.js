@@ -1,14 +1,15 @@
-import axios from "axios";
+
+import NewsRoomAPI from "./NewsRoomAPIconfig";
 import store from "../state/store/configureStore";
 
 const { dispatch } = store;
-const ArticlesApi = {
+const ArticlesAPI = {
   async index() {
-    const response = await axios.get("api/articles");
+    const response = await NewsRoomAPI.get("/articles");
     dispatch({ type: "SET_ARTICLES", payload: response.data.articles });
   },
   async show(id) {
-    const response = await axios.get(`api/article/${id}`);
+    const response = await NewsRoomAPI.get(`/article/${id}`);
     dispatch({ type: "SET_ACTIVE_ARTICLE", payload: response.data.article });
   },
 
@@ -21,7 +22,7 @@ const ArticlesApi = {
         payload: "location cannot be detected",
       });
     } else {
-      const openCageResponse = await axios.get(
+      const openCageResponse = await NewsRoomAPI.get(
         "https://api.opencagedata.com/geocode/v1/json",
         {
           params: {
@@ -45,4 +46,4 @@ function fetchUserCoordinates() {
   });
 }
 
-export default ArticlesApi;
+export default ArticlesAPI;

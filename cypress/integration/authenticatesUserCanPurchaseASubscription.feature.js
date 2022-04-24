@@ -1,6 +1,6 @@
 describe("authenticated user", () => {
   beforeEach(() => {
-    cy.intercept("GET", "api/articles", {
+    cy.intercept("GET", "**/articles", {
       fixture: "articles.json",
     });
     cy.intercept("POST", "https://r.stripe.com/0", { statusCode: 201 });

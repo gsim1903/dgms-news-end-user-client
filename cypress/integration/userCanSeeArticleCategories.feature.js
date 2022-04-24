@@ -1,6 +1,6 @@
 describe('Visitor can switch to sport news category tab', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'api/articles', {
+    cy.intercept('GET', '**/articles', {
       fixture: 'articles.json',
     }).as('getArticles')
 
