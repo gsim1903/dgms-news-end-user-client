@@ -1,8 +1,9 @@
 import React from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Location from "./Location.jsx";
+
 
 const NavBar = () => {
   const { userAuthenticated } = useSelector((state) => state)
@@ -36,7 +37,16 @@ const NavBar = () => {
             as={NavLink}
             to={{ pathname: '/login' }}
           />
-        )) || (<Menu.Item data-cy="logged-button" name="Logged in" />)}
+        )) || (
+          <>
+            <Menu.Item data-cy="logged-button" name="Logged in" />
+            <Menu.Item
+              data-cy="subscription-button"
+              name="Become a Subscriber"
+              onClick={() => navigate('/payment')}
+            />
+          </>
+        )}
       </Menu>
       <Menu.Item 
       />

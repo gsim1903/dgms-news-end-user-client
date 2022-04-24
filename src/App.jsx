@@ -8,6 +8,7 @@ import Footer from './Components/Footer.jsx'
 import Login from './Components/Login.jsx'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PaymentForm from './Components/PaymentForm.jsx'
 
 const App = () => {
   return (
