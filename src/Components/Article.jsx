@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { Card, Container } from "semantic-ui-react";
+import { Grid, Container, Card, Item } from "semantic-ui-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+
 
 
 const Article = () => {
@@ -30,7 +31,7 @@ const Article = () => {
 
   return (
     <Container text>
-      <Card
+      <Card sx={{ width: '100%', maxWidth: 700 }}
         header={article?.title}
         meta={`By: ${article?.author}`}
         image={article?.image}
@@ -44,5 +45,9 @@ const Article = () => {
     </Container>
   );
 };
+
+
+
+
 
 export default Article;

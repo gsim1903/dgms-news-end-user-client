@@ -1,9 +1,11 @@
 import React from "react";
-import { Menu, Segment } from "semantic-ui-react";
+import { Menu, Segment, Dropdown } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Location from "./Location";
+import LanguageChoice from "./LanguageChoice";
+
 
 
 const NavBar = () => {
@@ -47,10 +49,14 @@ const NavBar = () => {
             />
           </>
         )}
+      <LanguageChoice/>
       </Menu>
       <Location/>
+      
     </Segment>
+    
   );
 };
 
 export default NavBar;
+
