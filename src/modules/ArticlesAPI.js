@@ -3,7 +3,9 @@ import NewsRoomAPI from "./NewsRoomAPIconfig";
 import store from "../state/store/configureStore";
 
 const { dispatch } = store;
+
 const ArticlesAPI = {
+
   async index() {
     const response = await NewsRoomAPI.get("/articles");
     dispatch({ type: "SET_ARTICLES", payload: response.data.articles });

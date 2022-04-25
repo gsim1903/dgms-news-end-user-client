@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import auth from "../modules/auth";
+import Authentication from "../modules/Authentication";
 import { Button, Container, Form, Input } from "semantic-ui-react";
 import { toast } from "react-toastify";
 
@@ -17,7 +17,7 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const response = await auth.signIn(email, password);
+    const response = await Authentication.signIn(email, password);
 
     if (response.data.uid) {
       dispatch({

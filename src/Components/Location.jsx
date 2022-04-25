@@ -4,7 +4,7 @@ import ArticlesAPI from "../modules/ArticlesAPI";
 
 
 const Location = () => {
-  const { userCountry } = useSelector((state) => state);
+const { userCountry } = useSelector((state) => state);
 
   useEffect(() => {
     ArticlesAPI.getLocation();

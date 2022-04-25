@@ -20,7 +20,7 @@ describe("authenticated user", () => {
     cy.get("@subscriptionButton").should("be.visible");
   });
 
-  describe.only("filling in a form with valid cc-details", () => {
+  describe("filling in a form with valid cc-details", () => {
     beforeEach(() => {
       cy.get("@subscriptionButton").click();
       cy.url().should("contain", "/payment");

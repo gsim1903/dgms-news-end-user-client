@@ -47,8 +47,8 @@ describe("visitor can see an single article by authenticating right away", () =>
       cy.get("[data-cy=submit-button]").click();
     });
 
-    it.only("is expected to redirect user to all articles", () => {
-      cy.get("[data-cy=articles-list]").children().should("have.length", 6);
+    it("is expected to redirect user to all articles", () => {
+      cy.get("[data-cy=articles-list]").children().first().children().should("have.length", 6);
     });
     it("is expected to inform user that login was successful", () => {
       cy.get("[data-cy=flash-message]").should(
