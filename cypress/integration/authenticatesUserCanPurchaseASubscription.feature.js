@@ -65,7 +65,13 @@ describe("authenticated user", () => {
     });
     
     it("is expected to cancel transcation when lost card is reported", () => {
-      cy.wait("@lostCardResponse").then(() => {});
+      cy.wait("@lostCardResponse").then((r) => {
+        
+      });;
+      // cy.get("[data-cy=message]").should(
+      //   "contain.text",
+      //   "Your payment has not been processed"
+      // );
     });
   });
 });

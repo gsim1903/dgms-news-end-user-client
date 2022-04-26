@@ -8,6 +8,10 @@ import {
 } from '@stripe/react-stripe-js'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+
+
+
 
 const PaymentForm = () => {
   const stripe = useStripe()
@@ -16,20 +20,21 @@ const PaymentForm = () => {
 
   const processPayment = async () => {
     const ccElement = elements.getElement(CardNumberElement)
-    let paymentStatus;
+    let paymentStatus
     try {
-          const stripeResponse = await stripe.createToken(ccElement)
-          paymentStatus = await axios.post(
-          "http://localhost:3001/api/subscriptions",
-          { stripeToken: stripeResponse.token.id, amount: 20000 }
-        );
-      } catch (error) {
-      }
-      if (paymentStatus.data.paid) {
-        dispatch({ type: "SET_SUBSCRIBER_STATUS", payload: true });
-      }
-    };
-
+      const stripeResponse = await stripe.createToken(ccElement)
+      paymentStatus = await axios.post(
+        'http://localhost:3001/api/subscriptions',
+        { stripeToken: stripeResponse.token.id, amount: 20000 },
+      );
+    } catch (error) {
+    toast(error.response.message)
+      dispatch({ type: 'SET_SUBSCRIBER_STATUS', payload: false })
+    }
+    if (paymentStatus.data.paid) {
+      dispatch({ type: 'SET_SUBSCRIBER_STATUS', payload: true })
+    }
+  }
 
   const options = {
     style: {
