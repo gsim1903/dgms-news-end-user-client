@@ -41,6 +41,7 @@ describe("authenticated user", () => {
       });
     });
   });
+
   describe("when user cannot purchase subscription successfully", () => {
     beforeEach(() => {
       cy.intercept("POST", "api/subscriptions", {
@@ -62,6 +63,7 @@ describe("authenticated user", () => {
       cy.fillInPaymentFormField("cvc", "123");
       cy.get("[data-cy=submit-payment]").click();
     });
+    
     it("is expected to cancel transcation when lost card is reported", () => {
       cy.wait("@lostCardResponse").then(() => {});
     });
