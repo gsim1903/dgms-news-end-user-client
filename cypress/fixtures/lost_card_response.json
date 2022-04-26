@@ -1,0 +1,10 @@
+{
+  "error":{
+    "message": "The payment has been declined because the card is reported lost.",
+    "param": "null",
+    "code": "lost_card",
+    "type": "card_error",
+    "decline_code": "lost_card"
+
+  }
+}

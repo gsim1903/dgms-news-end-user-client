@@ -4,9 +4,8 @@ describe("authenticated user", () => {
       fixture: "articles.json",
     });
     cy.intercept("POST", "https://r.stripe.com/0", { statusCode: 201 });
-    
   });
-  describe('when user purchase subscription successfully', () => {
+  describe("when user purchase subscription successfully", () => {
     beforeEach(() => {
       cy.intercept("POST", "api/subscriptions", {
         statusCode: 201,
@@ -18,7 +17,7 @@ describe("authenticated user", () => {
         payload: true,
       });
       cy.get("[data-cy=subscription-button]").as("subscriptionButton");
-    })
+    });
     it("is expected to see a purchase subscription button", () => {
       cy.get("@subscriptionButton").should("be.visible");
     });
@@ -41,13 +40,13 @@ describe("authenticated user", () => {
         );
       });
     });
-  })
-  describe('when user cannot purchase subscription successfully', () => {
+  });
+  describe("when user cannot purchase subscription successfully", () => {
     beforeEach(() => {
-      // cy.intercept("POST", "api/subscriptions", {
-      //   statusCode: 201,
-      //   body: { paid: true },
-      // });
+      cy.intercept("POST", "api/subscriptions", {
+        statusCode: 402,
+        fixture: "lost_card_response.json",
+      }).as("lostCardResponse");
       cy.visit("/");
       cy.window().its("store").invoke("dispatch", {
         type: "SET_USER_AUTHENTICATED",
@@ -63,12 +62,8 @@ describe("authenticated user", () => {
       cy.fillInPaymentFormField("cvc", "123");
       cy.get("[data-cy=submit-payment]").click();
     });
-    it.only('is expected to',() => {
-
-    })
-    
-  })
-
-  
+    it("is expected to cancel transcation when lost card is reported", () => {
+      cy.wait("@lostCardResponse").then(() => {});
+    });
+  });
 });
-

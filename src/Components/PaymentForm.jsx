@@ -17,11 +17,13 @@ const PaymentForm = () => {
   const processPayment = async () => {
     const ccElement = elements.getElement(CardNumberElement);
     const stripeResponse = await stripe.createToken(ccElement);
-    debugger 
-    const paymentStatus = await axios.post(
-      "http://localhost:3001/api/subscriptions",
-      { stripeToken: stripeResponse.token.id, amount: 20000 }
-    );
+    let paymentStatus;
+    try {
+      const paymentStatus = await axios.post(
+        "http://localhost:3001/api/subscriptions",
+        { stripeToken: stripeResponse.token.id, amount: 20000 }
+      );
+    } catch (error) {}
 
     if (paymentStatus.data.paid) {
       dispatch({ type: "SET_SUBSCRIBER_STATUS", payload: true });
