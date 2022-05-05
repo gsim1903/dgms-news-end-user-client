@@ -34,7 +34,7 @@ const Articles = () => {
             <div data-cy="head-lines">
               <h2>{article.title}</h2>{" "}
             </div>
-            <Image
+            <img
               src={article.image}
               alt=""
               size="small"

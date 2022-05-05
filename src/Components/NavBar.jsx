@@ -13,8 +13,8 @@ const NavBar = () => {
   const { userAuthenticated } = useSelector((state) => state)
 
   return (
-    <Segment inverted>
-      <Menu inverted secondary>
+    <Segment >
+      <Menu color="black" secondary>
         <Menu.Item
           data-cy="current-link"
           name="Current news"
@@ -33,20 +33,6 @@ const NavBar = () => {
           as={NavLink}
           to={{ pathname: '/business' }}
         />
-        <Menu.Item
-          data-cy="swedish" 
-          name={t("swedish")}
-          onClick={() => {
-            i18n.changeLanguage('sv')
-          }}
-        />
-        <Menu.Item
-          data-cy="english"
-          name={t("english")}
-          onClick={() => { i18n.changeLanguage('en')
-          }}
-        />
-
         {(!userAuthenticated && (
           <Menu.Item
             data-cy="login-button"
